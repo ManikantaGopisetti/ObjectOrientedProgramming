@@ -42,7 +42,7 @@ public class EmpWage {
 			System.out.println("daily emp wage= " + dailyEmpWage);
 
 			totalWage += dailyEmpWage;
-
+			
 		}
 		System.out.println("total wage per month= " + totalWage);
 	}
