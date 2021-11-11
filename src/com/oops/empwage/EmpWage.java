@@ -6,28 +6,38 @@ public class EmpWage {
 	final static int IS_PART_TIME = 2;
 	final static int WAGE_PER_HOUR = 20;
 	final static int MAX_WORKING_DAYS = 20;
+	final static int MAX_WORKING_HOURS = 100;
 
 	public static void main(String[] args) {
 
 		int hours = 0;
 		int noOfWorkDays = 0;
+		int noOfWorkHours = 0;
 		int totalWage = 0;
 
-		while (noOfWorkDays < MAX_WORKING_DAYS) {
+		while (noOfWorkHours < MAX_WORKING_HOURS && noOfWorkDays < MAX_WORKING_DAYS) {
 
 			int attendanceCheck = (int) Math.floor((Math.random() * 10) % 3);
 
 			switch (attendanceCheck) {
-
+			
 			case IS_FULL_TIME:
 				hours = 8;
+				if (noOfWorkHours + hours > MAX_WORKING_HOURS) {
+					break;
+				}
 				System.out.println("employee is present and full time");
+				noOfWorkHours += hours;
 				noOfWorkDays++;
 				break;
 
 			case IS_PART_TIME:
 				hours = 4;
+				if (noOfWorkHours + hours > MAX_WORKING_HOURS) {
+					break;
+				}
 				System.out.println("employee is present and part time");
+				noOfWorkHours += hours;
 				noOfWorkDays++;
 				break;
 
@@ -41,8 +51,8 @@ public class EmpWage {
 			int dailyEmpWage = hours * WAGE_PER_HOUR;
 			System.out.println("daily emp wage= " + dailyEmpWage);
 
-			totalWage += dailyEmpWage;
-			
+			totalWage = totalWage + dailyEmpWage;
+
 		}
 		System.out.println("total wage per month= " + totalWage);
 	}
