@@ -53,8 +53,8 @@ public class EmployeeWageComputation {
 			}
 			int dailyEmpWage = hours * wage_per_hour;
 			System.out.println("daily emp wage= " + dailyEmpWage);
-			System.out.println(noOfWorkDays);
-			System.out.println(noOfWorkHours);
+			//System.out.println(noOfWorkDays);
+			//System.out.println(noOfWorkHours);
 
 			totalWage = totalWage + dailyEmpWage;
 
