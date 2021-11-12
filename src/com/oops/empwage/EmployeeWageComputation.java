@@ -4,18 +4,17 @@ public class EmployeeWageComputation {
 
 	final static int IS_FULL_TIME = 1;
 	final static int IS_PART_TIME = 2;
-	final static int WAGE_PER_HOUR = 20;
-	final static int MAX_WORKING_DAYS = 30;
-	final static int MAX_WORKING_HOURS = 100;
+	
 
-	public int employeeWage() {
+	public int employeeWage(String name, int max_working_days,int max_working_hours,int wage_per_hour) {
 
 		int hours = 0;
 		int noOfWorkDays = 0;
 		int noOfWorkHours = 0;
 		int totalWage = 0;
+		int count=0;
 
-		while (noOfWorkHours < MAX_WORKING_HOURS && noOfWorkDays < MAX_WORKING_DAYS) {
+		while (noOfWorkHours < max_working_hours && noOfWorkDays < max_working_days) {
 
 			int attendanceCheck = (int) Math.floor((Math.random() * 10) % 3);
 
@@ -23,7 +22,8 @@ public class EmployeeWageComputation {
 			
 			case IS_FULL_TIME:
 				hours = 8;
-				if (noOfWorkHours + hours > MAX_WORKING_HOURS) {
+				if (noOfWorkHours + hours > max_working_hours) {
+					count++;
 					break;
 				}
 				System.out.println("employee is present and full time");
@@ -33,7 +33,8 @@ public class EmployeeWageComputation {
 
 			case IS_PART_TIME:
 				hours = 4;
-				if (noOfWorkHours + hours > MAX_WORKING_HOURS) {
+				if (noOfWorkHours + hours > max_working_hours) {
+					count++;
 					break;
 				}
 				System.out.println("employee is present and part time");
@@ -47,9 +48,13 @@ public class EmployeeWageComputation {
 				noOfWorkDays++;
 				break;
 			}
-
-			int dailyEmpWage = hours * WAGE_PER_HOUR;
+			if(count==1) {
+				break;
+			}
+			int dailyEmpWage = hours * wage_per_hour;
 			System.out.println("daily emp wage= " + dailyEmpWage);
+			System.out.println(noOfWorkDays);
+			System.out.println(noOfWorkHours);
 
 			totalWage = totalWage + dailyEmpWage;
 
