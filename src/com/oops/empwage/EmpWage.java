@@ -22,7 +22,7 @@ public class EmpWage {
 		}
 		
 		while (true) {
-			System.out.println("Enter your choice:\n 1.Add company\n 2.Display list of companies toalwage\n 3.Display paricular company total wage\n 4.Exit");
+			System.out.println("Enter your choice:\n 1.Add company\n 2.Display list of companies totalwages\n 3.Display paricular company total wage\n 4.Exit");
 			int choice = sc.nextInt();
 			
 			switch (choice) {
