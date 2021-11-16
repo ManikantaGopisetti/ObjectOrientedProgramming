@@ -5,8 +5,20 @@ public class EmployeeWageComputation {
 	final static int IS_FULL_TIME = 1;
 	final static int IS_PART_TIME = 2;
 	
+	String name;
+	int max_working_days;
+	int max_working_hours;
+	int wage_per_hour;
 
-	public int employeeWage(String name, int max_working_days,int max_working_hours,int wage_per_hour) {
+	public EmployeeWageComputation(String name, int max_working_days, int max_working_hours, int wage_per_hour) {
+		super();
+		this.name = name;
+		this.max_working_days = max_working_days;
+		this.max_working_hours = max_working_hours;
+		this.wage_per_hour = wage_per_hour;
+	}
+
+	public int employeeWage() {
 
 		int hours = 0;
 		int noOfWorkDays = 0;
@@ -26,7 +38,7 @@ public class EmployeeWageComputation {
 					count++;
 					break;
 				}
-				System.out.println("employee is present and full time");
+				//System.out.println("employee is present and full time");
 				noOfWorkHours += hours;
 				noOfWorkDays++;
 				break;
@@ -37,13 +49,13 @@ public class EmployeeWageComputation {
 					count++;
 					break;
 				}
-				System.out.println("employee is present and part time");
+				//System.out.println("employee is present and part time");
 				noOfWorkHours += hours;
 				noOfWorkDays++;
 				break;
 
 			default:
-				System.out.println("employee is absent");
+				//System.out.println("employee is absent");
 				hours = 0;
 				noOfWorkDays++;
 				break;
@@ -52,12 +64,11 @@ public class EmployeeWageComputation {
 				break;
 			}
 			int dailyEmpWage = hours * wage_per_hour;
-			System.out.println("daily emp wage= " + dailyEmpWage);
+			//System.out.println("daily emp wage= " + dailyEmpWage);
 			//System.out.println(noOfWorkDays);
 			//System.out.println(noOfWorkHours);
 
 			totalWage = totalWage + dailyEmpWage;
-
 		}
 
 		return totalWage;

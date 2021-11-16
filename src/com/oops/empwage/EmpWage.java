@@ -1,41 +1,65 @@
 package com.oops.empwage;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class EmpWage {
 	public static void main(String[] args) {
-		
-		
-		System.out.println("Welcome to Employee Wage Computation Program");
-		
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Enter no of Companies : ");
-		int nComp=sc.nextInt();
-		EmployeeWageComputation ec = new EmployeeWageComputation();
-		
-		
-		for(int i=0;i<nComp;i++) {
-			sc.nextLine(); //Consume newline left-over by Enter key
 
-			System.out.print("Enter the name of Company : ");
-			String name = sc.nextLine();
-			
-			System.out.print("Enter max working days of Company : ");
-			int max_working_days=sc.nextInt();
-			
-			System.out.print("Enter max working hours of Company : ");
-			int max_working_hours=sc.nextInt();
-			
-			System.out.print("Enter wage per hour of Company : ");
-			int wage_per_hour=sc.nextInt();
-			
-			int wagePerMonth = ec.employeeWage(name, max_working_days,max_working_hours,wage_per_hour);
-			System.out.println("Employee wage per month= "+wagePerMonth);
+		System.out.println("Welcome to Employee Wage Computation Program");
+
+		List<CompanyWage> companies = new ArrayList<>();
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter no of companies to add: ");
+		int nComp = sc.nextInt();
+
+		for (int i = 0; i < nComp; i++) {
+			CompanyWage obj = new CompanyWage();
+			obj.addComp();
+			companies.add(obj);
 		}
 		
-		sc.close();
-		
-	}
+		while (true) {
+			System.out.println("Enter your choice:\n 1.Add company\n 2.Display list of companies toalwage\n 3.Display paricular company total wage\n 4.Exit");
+			int choice = sc.nextInt();
+			
+			switch (choice) {
+			case 1:
+				System.out.println("Adding new company");
+				CompanyWage obj = new CompanyWage();
+				obj.addComp();
+				companies.add(obj);
+				break;
 
-	
+			case 2:
+				System.out.println("Display list of companies total wage");
+				for (CompanyWage companyWage : companies) {
+					System.out.println(companyWage);
+				}
+				break;
+
+			case 3:
+				System.out.println("Display required company total wage using company name");
+				String name = sc.next();
+				for (int i = 0; i < nComp; i++) {
+					obj = companies.get(i);
+					if (obj.getCompName().equals(name)) {
+						System.out.println(obj);
+					}
+				}
+				break;
+				
+			case 4:
+				System.out.println("exit employee wage program");
+				sc.close();
+				return;
+
+			default:
+				System.out.println("enter valid choice between 1 to 4");
+				break;
+			}
+		}	
+	}
 }
