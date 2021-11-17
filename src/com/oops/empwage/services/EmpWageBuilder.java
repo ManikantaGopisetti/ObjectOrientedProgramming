@@ -1,6 +1,8 @@
 package com.oops.empwage.services;
 
-import com.oops.empwage.entity.Employee;
+import java.util.Scanner;
+
+import com.oops.empwage.entity.CompanyEmpWage;
 
 public class EmpWageBuilder {
 
@@ -11,13 +13,43 @@ public class EmpWageBuilder {
 	int max_working_days;
 	int max_working_hours;
 	int wage_per_hour;
+	int i = 0;
 
-	public EmpWageBuilder(Employee e) {
-		super();
-		this.name = e.getName();
-		this.max_working_days = e.getMax_working_days();
-		this.max_working_hours = e.getMax_working_hours();
-		this.wage_per_hour = e.getWage_per_hour();
+	Scanner sc = new Scanner(System.in);
+
+	public void addCompany() {
+		System.out.println("Enter no of companies to add: ");
+		int nComp = sc.nextInt();
+		CompanyEmpWage[] obj = new CompanyEmpWage[nComp];
+		sc.nextLine(); // Consume newline left-over by Enter key
+
+		for (int i = 0; i < nComp; i++) {
+
+			System.out.print("Enter the name of Company " + (i + 1) + ": ");
+			name = sc.nextLine();
+
+			System.out.print("Enter max working days of Company : ");
+			max_working_days = sc.nextInt();
+
+			System.out.print("Enter max working hours of Company : ");
+			max_working_hours = sc.nextInt();
+
+			System.out.print("Enter wage per hour of Company : ");
+			wage_per_hour = sc.nextInt();
+			obj[i] = new CompanyEmpWage(name, max_working_days, max_working_hours, wage_per_hour);
+			obj[i].setTotal_wage(employeeWage()); // calculating total wage for this obj
+			sc.nextLine(); // Consume newline left-over by Enter key
+
+		}
+		System.out.println("Total wage of each company: ");
+		display(obj);
+	}
+
+	public void display(CompanyEmpWage[] obj) {
+		for (CompanyEmpWage EmpWage : obj) {
+			System.out.println(EmpWage);
+		}
+
 	}
 
 	public int employeeWage() {
