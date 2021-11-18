@@ -57,6 +57,8 @@ public class EmpWageBuilder implements WageBuilder {
 		int noOfWorkHours = 0;
 		int totalWage = 0;
 		int count = 0;
+		
+		List<String> dailyWage = CompanyEmpWage.getDailyWage();
 
 		while (noOfWorkHours < max_working_hours && noOfWorkDays < max_working_days) {
 
@@ -73,6 +75,7 @@ public class EmpWageBuilder implements WageBuilder {
 				// System.out.println("employee is present and full time");
 				noOfWorkHours += hours;
 				noOfWorkDays++;
+				dailyWage.add("full time: "+hours * wage_per_hour);
 				break;
 
 			case IS_PART_TIME:
@@ -84,21 +87,24 @@ public class EmpWageBuilder implements WageBuilder {
 				// System.out.println("employee is present and part time");
 				noOfWorkHours += hours;
 				noOfWorkDays++;
+				dailyWage.add("part time: "+hours * wage_per_hour);
 				break;
 
 			default:
 				// System.out.println("employee is absent");
 				hours = 0;
 				noOfWorkDays++;
+				dailyWage.add("absent: "+hours * wage_per_hour);
 				break;
 			}
 			if (count == 1) {
 				break;
 			}
-			int dailyEmpWage = hours * wage_per_hour;
+			int dailyEmpWage =hours * wage_per_hour;
 			// System.out.println("daily emp wage= " + dailyEmpWage);
 			// System.out.println(noOfWorkDays);
 			// System.out.println(noOfWorkHours);
+			
 
 			totalWage = totalWage + dailyEmpWage;
 		}

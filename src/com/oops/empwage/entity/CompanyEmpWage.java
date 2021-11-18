@@ -1,14 +1,19 @@
 package com.oops.empwage.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CompanyEmpWage {
 
 	String name;
-	
+
 	private int max_working_days;
 	private int max_working_hours;
 	private int wage_per_hour;
 
 	int total_wage;
+
+	public static List<String> dailyWage = new ArrayList<String>();
 
 	public CompanyEmpWage(String name, int max_working_days, int max_working_hours, int wage_per_hour) {
 		super();
@@ -34,11 +39,12 @@ public class CompanyEmpWage {
 		this.total_wage = total_emp_wage;
 	}
 
-	
+	public static List<String> getDailyWage() {
+		return dailyWage;
+	}
 
-	@Override
-	public String toString() {
-		return "CompanyEmpWage [Company name=" + name + ",  total_wage=" + total_wage + "]";
+	public static void setDailyWage(List<String> dailyWage) {
+		CompanyEmpWage.dailyWage = dailyWage;
 	}
 
 	public int getMax_working_days() {
@@ -63,6 +69,19 @@ public class CompanyEmpWage {
 
 	public void setWage_per_hour(int wage_per_hour) {
 		this.wage_per_hour = wage_per_hour;
+	}
+
+	@Override
+	public String toString() {
+		
+		System.out.println("Company name: "+name);
+		System.out.println("Daily wages: ");
+		for (String string : dailyWage) {
+			System.out.println(string);
+		}
+		System.out.println("Total wage: "+total_wage);
+		return  "Company detais displayed";
+		
 	}
 
 }
