@@ -21,7 +21,7 @@ public class EmpWage {
 			ewb.addCompany(obj);
 		}
 		while (true) {
-			System.out.println("Enter your choice :\n 1.Add Company\n 2.Display total Wages\n 3.Exit program ");
+			System.out.println("Enter your choice :\n 1.Add Company\n 2.Display total Wages\n 3.Display total wage using company name\n 4.Exit program ");
 			int choice = sc.nextInt();
 			switch (choice) {
 			case 1:
@@ -35,9 +35,13 @@ public class EmpWage {
 				break;
 				
 			case 3:
-				System.out.println("Exiting Employee Wage Computation Program ");
-				sc.close();
-				return;
+				System.out.println("Total wage of particular company: ");
+				ewb.getCompany(obj);
+				break;
+				
+			case 4:System.out.println("Exiting Employee Wage Computation Program ");
+			sc.close();
+			return;
 
 			}
 		}

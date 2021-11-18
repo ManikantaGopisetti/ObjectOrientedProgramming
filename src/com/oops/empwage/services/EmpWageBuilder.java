@@ -34,7 +34,7 @@ public class EmpWageBuilder implements WageBuilder {
 		
 		CompanyEmpWage companyEmpWage = new CompanyEmpWage(name, max_working_days, max_working_hours, wage_per_hour);
 		
-		companyEmpWage.setTotal_wage(employeeWage()); 			// calculating total wage for this obj
+		companyEmpWage.setTotal_wage(employeeWage(companyEmpWage)); 			// calculating total wage for this obj
 		
 		obj.add(companyEmpWage);
 		
@@ -49,8 +49,20 @@ public class EmpWageBuilder implements WageBuilder {
 		}
 
 	}
+	public void getCompany(List<CompanyEmpWage> obj) {
+		System.out.println("Enter company name to get total Wage: ");
+		String compName=sc.next();
+		for (CompanyEmpWage companyEmpWage : obj) {
+			if(companyEmpWage.getName().equals(compName)) {
+				System.out.println("Total Wage: "+companyEmpWage.getTotal_wage());
+				return;
+			}
+		}
+		System.out.println("No company found with given name");
+		
+	}
 
-	public int employeeWage() {
+	public int employeeWage(CompanyEmpWage companyEmpWage) {
 
 		int hours = 0;
 		int noOfWorkDays = 0;
@@ -108,7 +120,10 @@ public class EmpWageBuilder implements WageBuilder {
 
 			totalWage = totalWage + dailyEmpWage;
 		}
-
+		companyEmpWage.setMax_working_days(noOfWorkDays);
+		companyEmpWage.setMax_working_hours(noOfWorkHours);
+		companyEmpWage.setWage_per_hour(wage_per_hour);
+		
 		return totalWage;
 
 	}

@@ -9,7 +9,9 @@ public interface WageBuilder {
 	public abstract  void addCompany(List<CompanyEmpWage> obj);
 
 	public abstract void display(List<CompanyEmpWage> obj);
+	
+	public abstract void getCompany(List<CompanyEmpWage> obj);
 
-	public abstract int employeeWage();
+	public abstract int employeeWage(CompanyEmpWage companyEmpWage);
 
 }
