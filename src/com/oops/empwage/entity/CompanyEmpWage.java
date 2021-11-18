@@ -34,9 +34,11 @@ public class CompanyEmpWage {
 		this.total_wage = total_emp_wage;
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "CompanyEmpWage [Company_name=" + name + ", total_wage=" + total_wage + "]";
+		return "CompanyEmpWage [Company name=" + name + ",  total_wage=" + total_wage + "]";
 	}
 
 	public int getMax_working_days() {

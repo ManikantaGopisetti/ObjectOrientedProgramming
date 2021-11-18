@@ -1,8 +1,10 @@
 package com.oops.empwage.services;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.oops.empwage.entity.CompanyEmpWage;
+import com.oops.empwage.entity.CompanyList;
 
 public class EmpWageBuilder implements WageBuilder {
 
@@ -13,43 +15,41 @@ public class EmpWageBuilder implements WageBuilder {
 	int max_working_days;
 	int max_working_hours;
 	int wage_per_hour;
-	int i = 0;
 
 	Scanner sc = new Scanner(System.in);
 
-	@Override
-	public void addCompany(CompanyEmpWage[] obj) {
-		for (int i = 0; i < obj.length; i++) {
+	public void addCompany(List<CompanyEmpWage> obj) {
 
-			System.out.print("Enter the name of Company " + (i + 1) + ": ");
-			name = sc.nextLine();
+		System.out.print("Enter the name of Company : ");
+		name = sc.nextLine();
 
-			System.out.print("Enter max working days of Company : ");
-			max_working_days = sc.nextInt();
+		System.out.print("Enter max working days of Company : ");
+		max_working_days = sc.nextInt();
 
-			System.out.print("Enter max working hours of Company : ");
-			max_working_hours = sc.nextInt();
+		System.out.print("Enter max working hours of Company : ");
+		max_working_hours = sc.nextInt();
 
-			System.out.print("Enter wage per hour of Company : ");
-			wage_per_hour = sc.nextInt();
-			obj[i] = new CompanyEmpWage(name, max_working_days, max_working_hours, wage_per_hour);
-			obj[i].setTotal_wage(employeeWage()); // calculating total wage for this obj
-			sc.nextLine(); // Consume newline left-over by Enter key
+		System.out.print("Enter wage per hour of Company : ");
+		wage_per_hour = sc.nextInt();
+		
+		CompanyEmpWage companyEmpWage = new CompanyEmpWage(name, max_working_days, max_working_hours, wage_per_hour);
+		
+		companyEmpWage.setTotal_wage(employeeWage()); 			// calculating total wage for this obj
+		
+		obj.add(companyEmpWage);
+		
+		CompanyList.setCompanyList(obj);
+		sc.nextLine(); // Consume newline left-over by Enter key
 
-		}
-		System.out.println("Total wage of each company: ");
-		display(obj);
 	}
 
-	@Override
-	public void display(CompanyEmpWage[] obj) {
+	public void display(List<CompanyEmpWage> obj) {
 		for (CompanyEmpWage EmpWage : obj) {
 			System.out.println(EmpWage);
 		}
 
 	}
 
-	@Override
 	public int employeeWage() {
 
 		int hours = 0;
