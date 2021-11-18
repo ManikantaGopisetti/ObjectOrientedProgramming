@@ -14,8 +14,5 @@ public class CompanyList {
 	public static void setCompanyList(List<CompanyEmpWage> companyList) {
 		CompanyList.companyList = companyList;
 	}
-
-	
-
 	
 }
