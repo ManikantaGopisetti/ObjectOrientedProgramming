@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import com.oops.empwage.entity.CompanyEmpWage;
 
-public class EmpWageBuilder {
+public class EmpWageBuilder implements WageBuilder {
 
 	final static int IS_FULL_TIME = 1;
 	final static int IS_PART_TIME = 2;
@@ -17,13 +17,9 @@ public class EmpWageBuilder {
 
 	Scanner sc = new Scanner(System.in);
 
-	public void addCompany() {
-		System.out.println("Enter no of companies to add: ");
-		int nComp = sc.nextInt();
-		CompanyEmpWage[] obj = new CompanyEmpWage[nComp];
-		sc.nextLine(); // Consume newline left-over by Enter key
-
-		for (int i = 0; i < nComp; i++) {
+	@Override
+	public void addCompany(CompanyEmpWage[] obj) {
+		for (int i = 0; i < obj.length; i++) {
 
 			System.out.print("Enter the name of Company " + (i + 1) + ": ");
 			name = sc.nextLine();
@@ -45,6 +41,7 @@ public class EmpWageBuilder {
 		display(obj);
 	}
 
+	@Override
 	public void display(CompanyEmpWage[] obj) {
 		for (CompanyEmpWage EmpWage : obj) {
 			System.out.println(EmpWage);
@@ -52,6 +49,7 @@ public class EmpWageBuilder {
 
 	}
 
+	@Override
 	public int employeeWage() {
 
 		int hours = 0;
