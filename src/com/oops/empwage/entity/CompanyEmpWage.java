@@ -80,7 +80,7 @@ public class CompanyEmpWage {
 			System.out.println(string);
 		}
 		System.out.println("Total wage: "+total_wage);
-		return  "Company detais displayed";
+		return  "Company detais displayed\n\n";
 		
 	}
 
